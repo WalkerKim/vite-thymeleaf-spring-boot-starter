@@ -1,0 +1,30 @@
+{
+  "properties": [
+    {
+      "sourceType": "kim.figure.vite.thymeleaf.springboot.autoconfigure.ViteSpringThymeleafConfigProperties",
+      "name": "vite",
+      "type": "java.lang.String",
+      "description": "Vite Thymeleaf Settings for Spring MVC"
+    },
+    {
+      "name": "vite.manifest-file-path",
+      "type": "java.lang.String",
+      "description": "path of manifest.json made by Vite build"
+    },
+    {
+      "name": "vite.compile-asset-extension-array",
+      "type": "java.util.List<java.lang.String>",
+      "description": "Comma-separated list of assets extensions written in thymeleaf html. it will be scan to change assets url to compiled by Vite"
+    },
+    {
+      "name": "vite.vite-dev-server-address",
+      "type": "java.lang.String",
+      "description": "Vite dev server address"
+    },
+    {
+      "name": "vite.is-vite-dev-proxy-active",
+      "type": "java.lang.Boolean",
+      "description": "If active vite dev server active for development"
+    }
+  ]
+}

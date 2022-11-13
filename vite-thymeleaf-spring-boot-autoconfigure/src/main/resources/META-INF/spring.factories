@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+kim.figure.vite.thymeleaf.springboot.autoconfigure.ViteThymeleafTemplateEngineAutoConfiguration
