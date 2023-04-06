@@ -6,8 +6,13 @@
 
     <groupId>kim.figure</groupId>
     <artifactId>vite-thymeleaf-spring-boot-autoconfigure</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
+    <version>${revision}</version>
+    <parent>
+        <groupId>kim.figure</groupId>
+        <artifactId>vite-thymeleaf-spring-boot-starter-parent</artifactId>
+        <version>${revision}</version>
+<!--        <relativePath>..</relativePath>-->
+    </parent>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -15,27 +20,38 @@
         <spring-boot.version>3.0.0-RC1</spring-boot.version>
         <vite.version>3.1.0</vite.version>
     </properties>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-autoconfigure</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>kim.figure</groupId>
-            <artifactId>thymeleaf-vite-linkbuilder</artifactId>
-            <version>1.0.0-snapshot</version>
+            <artifactId>vite-thymeleaf-spring-boot-starter</artifactId>
+            <version>${revision}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

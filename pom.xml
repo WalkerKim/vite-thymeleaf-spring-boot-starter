@@ -1,15 +1,114 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>kim.figure</groupId>
-  <artifactId>vite-thymeleaf-spring-boot-starter</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>vite-thymeleaf-spring-boot-starter</name>
-  <packaging>pom</packaging>
-
-<modules>
-  <module>vite-thymeleaf-spring-boot-autoconfigure</module>
-  <module>vite-thymeleaf-spring-boot-starter</module>
-</modules>
-
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>kim.figure</groupId>
+    <artifactId>vite-thymeleaf-spring-boot-starter-parent</artifactId>
+    <version>${revision}</version>
+    <name>vite-thymeleaf-spring-boot-starter-parent</name>
+    <packaging>pom</packaging>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.5</version>
+        <relativePath/>
+    </parent>
+    <url>https://github.com/WalkerKim/spring-ssg-spring-boot-starter</url>
+    <properties>
+        <revision>0.3.0-SNAPSHOT</revision>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>17</java.version>
+        <thymeleaf-vite-linkbuilder.version>0.1.0-SNAPSHOT</thymeleaf-vite-linkbuilder.version>
+    </properties>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <modules>
+        <module>vite-thymeleaf-spring-boot-autoconfigure</module>
+        <module>vite-thymeleaf-spring-boot-starter</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>kim.figure</groupId>
+                <artifactId>vite-thymeleaf-spring-boot-starter-parent</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>kim.figure</groupId>
+                <artifactId>vite-thymeleaf-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>kim.figure</groupId>
+                <artifactId>thymeleaf-vite-linkbuilder</artifactId>
+                <version>${thymeleaf-vite-linkbuilder.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
+                        <!--
+                        <goals>
+                          <goal>deploy</goal>
+                        </goals>
+                        -->
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <!--    <plugins>-->
+        <!--      <plugin>-->
+        <!--        <groupId>org.apache.maven.plugins</groupId>-->
+        <!--        <artifactId>maven-gpg-plugin</artifactId>-->
+        <!--        <version>1.4</version>-->
+        <!--        <executions>-->
+        <!--          <execution>-->
+        <!--            <id>sign-artifacts</id>-->
+        <!--            <phase>verify</phase>-->
+        <!--            <goals>-->
+        <!--              <goal>sign</goal>-->
+        <!--            </goals>-->
+        <!--          </execution>-->
+        <!--        </executions>-->
+        <!--      </plugin>-->
+        <!--    </plugins>-->
+    </build>
 </project>

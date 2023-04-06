@@ -7,15 +7,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.thymeleaf.linkbuilder.StandardLinkBuilder;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 /**
- * author         : walker
+ * author         : Do-Hyeong Walker Kim
  * date           : 2022. 11. 02.
  * description    :
  */
@@ -27,12 +26,25 @@ import java.io.IOException;
 public class ViteThymeleafTemplateEngineAutoConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(ViteThymeleafTemplateEngineAutoConfiguration.class);
 
+    /**
+     * @param properties ViteSpringThymeleafConfigProperties
+     * @return ViteBeanPostProcessor
+     */
     @Bean
     public ViteBeanPostProcessor addViteLinkBuilder(ViteSpringThymeleafConfigProperties properties){
 
         File manifestFile;
         try{
-            manifestFile = ResourceUtils.getFile(properties.getManifestFilePath());
+            Resource resource = new ClassPathResource(properties.getManifestFilePathInClassPath());
+            InputStream is = resource.getInputStream();
+            manifestFile = File.createTempFile("manifest", ".json");
+            FileOutputStream fos = new FileOutputStream(manifestFile);
+            int read;
+            byte[] bytes = new byte[1024];
+
+            while ((read = is.read(bytes)) != -1) {
+                fos.write(bytes, 0, read);
+            }
         }catch (FileNotFoundException e){
             manifestFile = null;
             if(properties.getIsViteDevProxyActive()){
@@ -41,6 +53,9 @@ public class ViteThymeleafTemplateEngineAutoConfiguration {
                 e.printStackTrace();
                 throw new ViteManifestFileException(e.getMessage());
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ViteManifestFileException(e.getMessage());
         }
 
 
